@@ -127,7 +127,11 @@ function App() {
   }
   //====
   function removeAllItems() {
-    setItems([]);
+    // Ask for confirmation before clearing the list
+    const confirmed = window.confirm("Are you sure you want to remove all items?");
+    if (confirmed) {
+      setItems([]);
+    }
   }
   //====
   // Function to handle sorting

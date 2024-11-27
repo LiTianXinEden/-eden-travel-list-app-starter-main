@@ -38,7 +38,7 @@ export default function Form({ handleAddItems }) {
                 <option value="3">3</option>
             </select>
 
-            <input id="item" type="text" value={description} onChange={handleDescriptionChange} placeholder="item..." />
+            <input id="item" type="text" value={description} onChange={handleDescriptionChange} placeholder="item..." required />
             <button type="submit">Add</button>
         </form>
     );
