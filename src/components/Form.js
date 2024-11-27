@@ -30,7 +30,7 @@ export default function Form({ handleAddItems }) {
 
     return (
         <form className="add-form" onSubmit={handleSubmit}>
-            <h3>What do you need to pack?</h3>
+            <h3>What do you need to pack? 🧳</h3>
 
             <select id="quantity" name="quantity" value={quantity} onChange={handleQuantityChange}>
                 <option value="1">1</option>
