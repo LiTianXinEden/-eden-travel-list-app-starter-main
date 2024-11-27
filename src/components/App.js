@@ -104,6 +104,7 @@ import Logo from "./Logo";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [sortOption, setSortOption] = useState("input"); // Sorting criteria
   //====  
   function handleAddItems(item) {
     setItems((prevItems) => [item, ...prevItems]);
@@ -128,15 +129,44 @@ function App() {
   function removeAllItems() {
     setItems([]);
   }
+  //====
+  // Function to handle sorting
+  function handleSortChange(e) {
+    setSortOption(e.target.value); // Update the sort option
+  }
+
+  // Sort the items based on the selected sort option
+  const sortedItems = [...items].sort((a, b) => {
+    if (sortOption === "alphabetical") {
+      return a.description.localeCompare(b.description);
+    } else if (sortOption === "packed") {
+      return a.packed - b.packed; // Packed items appear last
+    } else {
+      return 0; // Input order (default)
+    }
+  });
+
   return (
     <div className="app">
       <Logo />
-      <Form handleAddItems={handleAddItems} />
-      
-      <PackingList items={items} handleDeleteItem={handleDeleteItem} handleUpdateItem={handleUpdateItem} />
+      <div className="form-and-sorting">
+        <Form handleAddItems={handleAddItems} />
+        <div className="sorting-controls">
+          <label htmlFor="sort">Sort by:</label>
+          <select id="sort" value={sortOption} onChange={handleSortChange}>
+            <option value="input">Input Order</option>
+            <option value="alphabetical">Alphabetical</option>
+            <option value="packed">Packed Status</option>
+          </select>
+        </div>
+      </div>
+
+
+
+      <PackingList items={sortedItems} handleDeleteItem={handleDeleteItem} handleUpdateItem={handleUpdateItem} />
       <button onClick={removeAllItems} className="clear-button">Remove All Items</button>
       <Stats items={items} />
-      
+
     </div>
   );
 }

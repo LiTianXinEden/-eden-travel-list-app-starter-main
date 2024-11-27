@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function PackingList({ items, handleDeleteItem, handleUpdateItem }) {
+export default function PackingList({ items, handleDeleteItem, handleUpdateItem,  }) {
     return (
         <div className="list">
             <ul>
